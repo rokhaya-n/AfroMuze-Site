@@ -51,13 +51,19 @@ renderWaveform();
 //play audio after click & pause too
 let isPlaying = false;
 function togglePlayback() {
+  if (audioContext.state === 'suspended') {
+    audioContext.resume();
+  }
+  
   if (isPlaying) {
     audioElement.pause();
   } else {
     audioElement.play();
   }
+  
   isPlaying = !isPlaying; 
 }
+
 
 document.addEventListener('click', togglePlayback);
 
